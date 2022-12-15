@@ -1,0 +1,241 @@
+History log for the PETMR computer
+-----------------------------------------------------------------------------------
+October 13th, 2022: Attempt an FDG model, works pretty decent
+python3.9 train.py --train_noise_dir PETMR_RAC/FDG/S106/f1_as_1s/ PETMR_RAC/FDG/S107/f1_as_1s/ PETMR_RAC/FDG/S108/f1_as_1s/ PETMR_RAC/FDG/S109/f1_as_1s/ PETMR_RAC/FDG/S115/f1_as_1s/ PETMR_RAC/FDG/S140/f1_as_1s/  --train_target PETMR_RAC/FDG/S106/frames/f1.i PETMR_RAC/FDG/S107/frames/f1.i PETMR_RAC/FDG/S108/frames/f1.i PETMR_RAC/FDG/S109/frames/f1.i PETMR_RAC/FDG/S115/frames/f1.i PETMR_RAC/FDG/S140/frames/f1.i  --val_noise_dir PETMR_RAC/FDG/S154/f1_as_1s/ --val_target PETMR_RAC/FDG/S154/frames/f1.i --output_path Weights/FDG/Testing/f1_6_subjects --batch_size 16 --nb_epochs 200 --steps 2000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --noise_norm_constant 0.034 --target_norm 0.0057 --disp True
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_RAC/FDG/S106/f1_as_1s/snap5.i --weight_folder Weights/FDG/Testing/f1_6_subjects --slices 89 --noise_norm_constant 0.034 --target_norm 0.0057
+
+-------------------------------------------------------------------------------------
+October 17th, 2022: Add more subjects to the FDG model
+python3.9 train.py --train_noise_dir PETMR_images/FDG/S106/f1_as_1s/ PETMR_images/FDG/S107/f1_as_1s/ PETMR_images/FDG/S108/f1_as_1s/ PETMR_images/FDG/S109/f1_as_1s/ PETMR_images/FDG/S115/f1_as_1s/ PETMR_images/FDG/S154/f1_as_1s/ PETMR_images/FDG/S111/f1_as_1s/ PETMR_images/FDG/S116/f1_as_1s/ PETMR_images/FDG/S136/f1_as_1s/ PETMR_images/FDG/S137/f1_as_1s/ PETMR_images/FDG/S149/f1_as_1s/ PETMR_images/FDG/S156/f1_as_1s/ --train_target PETMR_images/FDG/S106/frames/f1.i PETMR_images/FDG/S107/frames/f1.i PETMR_images/FDG/S108/frames/f1.i PETMR_images/FDG/S109/frames/f1.i PETMR_images/FDG/S115/frames/f1.i PETMR_images/FDG/S154/frames/f1.i PETMR_images/FDG/S111/frames/f1.i PETMR_images/FDG/S116/frames/f1.i PETMR_images/FDG/S136/frames/f1.i PETMR_images/FDG/S137/frames/f1.i PETMR_images/FDG/S149/frames/f1.i PETMR_images/FDG/S156/frames/f1.i --val_noise_dir PETMR_images/FDG/S140/f1_as_1s/ PETMR_images/FDG/S148/f1_as_1s/ --val_target PETMR_images/FDG/S140/frames/f1.i PETMR_images/FDG/S148/frames/f1.i --output_path Weights/FDG/Testing/f1_12_subjects --batch_size 16 --nb_epochs 200 --steps 4000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --noise_norm_constant 0.040 --target_norm 0.0070 --disp False
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/FDG/S140/f1_as_1s/snap30.i --weight_folder Weights/FDG/Testing/f1_12_subjects --slices 89 --noise_norm_constant 0.040 --target_norm 0.0070
+
+python3.9 test_model.py --output_dir Outputs/FDG_S140_12_subjects  --test_noise_dir PETMR_images/FDG/S140/f1_as_1s/ --weight_folder Weights/FDG/Testing/f1_12_subjects --slices 89 --noise_norm_constant 0.040 --target_norm 0.0070
+
+-------------------------------------------------------------------------------------
+October 19th, 2022: Do a 12 subject RAC with all 10 augs, looks pretty good!
+python3.9 train.py --train_noise_dir PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/   --train_target PETMR_images/RAC/S12/frames/f2.i PETMR_images/RAC/S13/frames/f2.i PETMR_images/RAC/S14/frames/f2.i PETMR_images/RAC/S21/frames/f2.i PETMR_images/RAC/S23/frames/f2.i PETMR_images/RAC/S24/frames/f2.i PETMR_images/RAC/S27/frames/f2.i PETMR_images/RAC/S29/frames/f2.i PETMR_images/RAC/S30/frames/f2.i PETMR_images/RAC/S64/frames/f2.i PETMR_images/RAC/S65/frames/f2.i PETMR_images/RAC/S146/frames/f2.i --val_noise_dir PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ --val_target PETMR_images/RAC/S31/frames/f2.i PETMR_images/RAC/S147/frames/f2.i --output_path Weights/f1_12_subjects --batch_size 16 --nb_epochs 200 --steps 1000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 5 --noise_norm_constant 0.045 --target_norm 0.010
+
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/RAC/S31/f1_as_1s/snap30.i --weight_folder Weights/RAC/f1_12_subjects --slices 89 --noise_norm_constant 0.045 --target_norm 0.010
+
+-------------------------------------------------------------------------------------
+October 20th, 2022: Do a 8 subject PBR with all 10 augs Looks good!
+python3.9 train.py --train_noise_dir PETMR_images/PBR/S25/f1_as_1s/ PETMR_images/PBR/S26/f1_as_1s/ PETMR_images/PBR/S28/f1_as_1s/ PETMR_images/PBR/S52/f1_as_1s/ PETMR_images/PBR/S53/f1_as_1s/ PETMR_images/PBR/S57/f1_as_1s/ PETMR_images/PBR/S144/f1_as_1s/ PETMR_images/PBR/S155/f1_as_1s/    --train_target PETMR_images/PBR/S25/frames/f2.i PETMR_images/PBR/S26/frames/f2.i PETMR_images/PBR/S28/frames/f2.i PETMR_images/PBR/S52/frames/f2.i PETMR_images/PBR/S53/frames/f2.i PETMR_images/PBR/S57/frames/f2.i PETMR_images/PBR/S144/frames/f2.i PETMR_images/PBR/S155/frames/f2.i  --val_noise_dir PETMR_images/PBR/S22/f1_as_1s/ --val_target PETMR_images/PBR/S22/frames/f2.i  --output_path Weights/PBR/f1_8_subjects --batch_size 16 --nb_epochs 200 --steps 1000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 0 --noise_norm_constant 0.040 --target_norm 0.0056
+
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/PBR/S22/f1_as_1s/snap30.i --weight_folder Weights/PBR/f1_8_subjects --slices 89 --noise_norm_constant 0.040 --target_norm 0.0056
+-------------------------------------------------------------------------------------
+October 24th, 2022: Bootstrap the RAC model, test on S12 and S13
+python3.9 train.py --train_noise_dir PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/   --train_target PETMR_images/RAC/S31/frames/f2.i PETMR_images/RAC/S147/frames/f2.i PETMR_images/RAC/S14/frames/f2.i PETMR_images/RAC/S21/frames/f2.i PETMR_images/RAC/S23/frames/f2.i PETMR_images/RAC/S24/frames/f2.i PETMR_images/RAC/S27/frames/f2.i PETMR_images/RAC/S29/frames/f2.i PETMR_images/RAC/S30/frames/f2.i PETMR_images/RAC/S64/frames/f2.i PETMR_images/RAC/S65/frames/f2.i PETMR_images/RAC/S146/frames/f2.i --val_noise_dir PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ --val_target PETMR_images/RAC/S12/frames/f2.i PETMR_images/RAC/S13/frames/f2.i --output_path Weights/f1_12_subjects_bs1 --batch_size 16 --nb_epochs 200 --steps 1000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 10 --noise_norm_constant 0.045 --target_norm 0.010
+
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/RAC/S12/f1_as_1s/snap30.i --weight_folder Weights/RAC/f1_12_subjects_bs1 --slices 89 --noise_norm_constant 0.045 --target_norm 0.010
+
+-------------------------------------------------------------------------------------
+October 25th, 2022: Bootstrap the FDG model, test on S116 and S136
+python3.9 train.py --train_noise_dir PETMR_images/FDG/S106/f1_as_1s/ PETMR_images/FDG/S107/f1_as_1s/ PETMR_images/FDG/S108/f1_as_1s/ PETMR_images/FDG/S109/f1_as_1s/ PETMR_images/FDG/S115/f1_as_1s/ PETMR_images/FDG/S154/f1_as_1s/ PETMR_images/FDG/S111/f1_as_1s/ PETMR_images/FDG/S140/f1_as_1s/ PETMR_images/FDG/S148/f1_as_1s/ PETMR_images/FDG/S137/f1_as_1s/ PETMR_images/FDG/S149/f1_as_1s/ PETMR_images/FDG/S156/f1_as_1s/ --train_target PETMR_images/FDG/S106/frames/f1.i PETMR_images/FDG/S107/frames/f1.i PETMR_images/FDG/S108/frames/f1.i PETMR_images/FDG/S109/frames/f1.i PETMR_images/FDG/S115/frames/f1.i PETMR_images/FDG/S154/frames/f1.i PETMR_images/FDG/S111/frames/f1.i PETMR_images/FDG/S140/frames/f1.i PETMR_images/FDG/S148/frames/f1.i PETMR_images/FDG/S137/frames/f1.i PETMR_images/FDG/S149/frames/f1.i PETMR_images/FDG/S156/frames/f1.i --val_noise_dir PETMR_images/FDG/S116/f1_as_1s/ PETMR_images/FDG/S136/f1_as_1s/ --val_target PETMR_images/FDG/S116/frames/f1.i PETMR_images/FDG/S136/frames/f1.i --output_path Weights/FDG/Testing/f1_12_subjects_bs1 --batch_size 16 --nb_epochs 200 --steps 4000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --noise_norm_constant 0.040 --target_norm 0.0070 --disp False
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/FDG/S116/f1_as_1s/snap30.i --weight_folder Weights/FDG/Testing/f1_12_subjects_bs1 --slices 89 --noise_norm_constant 0.040 --target_norm 0.0070
+
+-------------------------------------------------------------------------------------
+October 31st, 2022: Run a massive model, all tracer types.
+
+python3.9 train.py --train_noise_dir PETMR_images/PBR/S25/f1_as_1s/ PETMR_images/PBR/S26/f1_as_1s/ PETMR_images/PBR/S28/f1_as_1s/ PETMR_images/PBR/S52/f1_as_1s/ PETMR_images/PBR/S53/f1_as_1s/ PETMR_images/PBR/S57/f1_as_1s/ PETMR_images/PBR/S144/f1_as_1s/ PETMR_images/PBR/S155/f1_as_1s/ PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/ PETMR_images/FDG/S106/f1_as_1s/ PETMR_images/FDG/S107/f1_as_1s/ PETMR_images/FDG/S108/f1_as_1s/ PETMR_images/FDG/S109/f1_as_1s/ PETMR_images/FDG/S115/f1_as_1s/ PETMR_images/FDG/S154/f1_as_1s/ PETMR_images/FDG/S111/f1_as_1s/ PETMR_images/FDG/S140/f1_as_1s/ PETMR_images/FDG/S148/f1_as_1s/ PETMR_images/FDG/S137/f1_as_1s/ PETMR_images/FDG/S149/f1_as_1s/ PETMR_images/FDG/S156/f1_as_1s/ --train_target PETMR_images/PBR/S25/frames/f2.i PETMR_images/PBR/S26/frames/f2.i PETMR_images/PBR/S28/frames/f2.i PETMR_images/PBR/S52/frames/f2.i PETMR_images/PBR/S53/frames/f2.i PETMR_images/PBR/S57/frames/f2.i PETMR_images/PBR/S144/frames/f2.i PETMR_images/PBR/S155/frames/f2.i PETMR_images/RAC/S31/frames/f2.i PETMR_images/RAC/S147/frames/f2.i PETMR_images/RAC/S14/frames/f2.i PETMR_images/RAC/S21/frames/f2.i PETMR_images/RAC/S23/frames/f2.i PETMR_images/RAC/S24/frames/f2.i PETMR_images/RAC/S27/frames/f2.i PETMR_images/RAC/S29/frames/f2.i PETMR_images/RAC/S30/frames/f2.i PETMR_images/RAC/S64/frames/f2.i PETMR_images/RAC/S65/frames/f2.i PETMR_images/RAC/S146/frames/f2.i PETMR_images/FDG/S106/frames/f1.i PETMR_images/FDG/S107/frames/f1.i PETMR_images/FDG/S108/frames/f1.i PETMR_images/FDG/S109/frames/f1.i PETMR_images/FDG/S115/frames/f1.i PETMR_images/FDG/S154/frames/f1.i PETMR_images/FDG/S111/frames/f1.i PETMR_images/FDG/S140/frames/f1.i PETMR_images/FDG/S148/frames/f1.i PETMR_images/FDG/S137/frames/f1.i PETMR_images/FDG/S149/frames/f1.i PETMR_images/FDG/S156/frames/f1.i --val_noise_dir PETMR_images/PBR/S22/f1_as_1s/ PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ PETMR_images/FDG/S116/f1_as_1s/ PETMR_images/FDG/S136/f1_as_1s/ --val_target PETMR_images/PBR/S22/frames/f2.i PETMR_images/RAC/S12/frames/f2.i PETMR_images/RAC/S13/frames/f2.i PETMR_images/FDG/S116/frames/f1.i PETMR_images/FDG/S136/frames/f1.i --output_path Weights/ALL/f1_32_subjects --batch_size 16 --nb_epochs 200 --steps 8000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --noise_norm_constant 0.040 --target_norm 0.0070 --disp False
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/FDG/S116/f1_as_1s/snap30.i --weight_folder Weights/ALL/f1_32_subjects --slices 89 --noise_norm_constant 0.040 --target_norm 0.0070
+
+Trained on:
+PBR/S25
+PBR/S26
+PBR/S28
+PBR/S52
+PBR/S53
+PBR/S57
+PBR/S144
+PBR/S155
+RAC/S31
+RAC/S147
+RAC/S14
+RAC/S21
+RAC/S23
+RAC/S24
+RAC/S27
+RAC/S29
+RAC/S30
+RAC/S64
+RAC/S65
+RAC/S146
+FDG/S106
+FDG/S107
+FDG/S108
+FDG/S109
+FDG/S115
+FDG/S154
+FDG/S111
+FDG/S140
+FDG/S148
+FDG/S137
+FDG/S149
+FDG/S156
+
+Test on:
+PBR/S22
+RAC/S12
+RAC/S13
+RAC/S46
+RAC/S50
+RAC/S54
+FDG/S116
+FDG/S136
+
+
+RAC/S49 breaks the DL
+
+November 25, 2022: Redo big model but with clipping and a little wider degrees
+python3.9 train.py --train_noise_dir PETMR_images/PBR/S25/f1_as_1s/ PETMR_images/PBR/S26/f1_as_1s/ PETMR_images/PBR/S28/f1_as_1s/ PETMR_images/PBR/S52/f1_as_1s/ PETMR_images/PBR/S53/f1_as_1s/ PETMR_images/PBR/S57/f1_as_1s/ PETMR_images/PBR/S144/f1_as_1s/ PETMR_images/PBR/S155/f1_as_1s/ PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/ PETMR_images/FDG/S106/f1_as_1s/ PETMR_images/FDG/S107/f1_as_1s/ PETMR_images/FDG/S108/f1_as_1s/ PETMR_images/FDG/S109/f1_as_1s/ PETMR_images/FDG/S115/f1_as_1s/ PETMR_images/FDG/S154/f1_as_1s/ PETMR_images/FDG/S111/f1_as_1s/ PETMR_images/FDG/S140/f1_as_1s/ PETMR_images/FDG/S148/f1_as_1s/ PETMR_images/FDG/S137/f1_as_1s/ PETMR_images/FDG/S149/f1_as_1s/ PETMR_images/FDG/S156/f1_as_1s/ --train_target PETMR_images/PBR/S25/frames/f2.i PETMR_images/PBR/S26/frames/f2.i PETMR_images/PBR/S28/frames/f2.i PETMR_images/PBR/S52/frames/f2.i PETMR_images/PBR/S53/frames/f2.i PETMR_images/PBR/S57/frames/f2.i PETMR_images/PBR/S144/frames/f2.i PETMR_images/PBR/S155/frames/f2.i PETMR_images/RAC/S31/frames/f2.i PETMR_images/RAC/S147/frames/f2.i PETMR_images/RAC/S14/frames/f2.i PETMR_images/RAC/S21/frames/f2.i PETMR_images/RAC/S23/frames/f2.i PETMR_images/RAC/S24/frames/f2.i PETMR_images/RAC/S27/frames/f2.i PETMR_images/RAC/S29/frames/f2.i PETMR_images/RAC/S30/frames/f2.i PETMR_images/RAC/S64/frames/f2.i PETMR_images/RAC/S65/frames/f2.i PETMR_images/RAC/S146/frames/f2.i PETMR_images/FDG/S106/frames/f1.i PETMR_images/FDG/S107/frames/f1.i PETMR_images/FDG/S108/frames/f1.i PETMR_images/FDG/S109/frames/f1.i PETMR_images/FDG/S115/frames/f1.i PETMR_images/FDG/S154/frames/f1.i PETMR_images/FDG/S111/frames/f1.i PETMR_images/FDG/S140/frames/f1.i PETMR_images/FDG/S148/frames/f1.i PETMR_images/FDG/S137/frames/f1.i PETMR_images/FDG/S149/frames/f1.i PETMR_images/FDG/S156/frames/f1.i --val_noise_dir PETMR_images/PBR/S22/f1_as_1s/ PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ PETMR_images/FDG/S116/f1_as_1s/ PETMR_images/FDG/S136/f1_as_1s/ --val_target PETMR_images/PBR/S22/frames/f2.i PETMR_images/RAC/S12/frames/f2.i PETMR_images/RAC/S13/frames/f2.i PETMR_images/FDG/S116/frames/f1.i PETMR_images/FDG/S136/frames/f1.i --output_path Weights/ALL/f1_32_subjects_clipping --batch_size 16 --nb_epochs 200 --steps 10000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --degrees_max 12 --noise_norm_constant 0.0020 --target_norm 0.0030 --disp False
+
+Test on:
+PBR/S22
+RAC/S12
+RAC/S13
+RAC/S46
+RAC/S50
+RAC/S54
+FDG/S116
+FDG/S136
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/FDG/S116/f1_as_1s/snap30.i --weight_folder Weights/ALL/f1_32_subjects_clipping --slices 89 --noise_norm_constant 0.002 --target_norm 0.003
+
+December 1st, 2022: Redo a RAC model, but with the zeroOutData wedge fix
+python3.9 train.py --train_noise_dir PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/   --train_target PETMR_images/RAC/S12/frames/f2.i PETMR_images/RAC/S13/frames/f2.i PETMR_images/RAC/S14/frames/f2.i PETMR_images/RAC/S21/frames/f2.i PETMR_images/RAC/S23/frames/f2.i PETMR_images/RAC/S24/frames/f2.i PETMR_images/RAC/S27/frames/f2.i PETMR_images/RAC/S29/frames/f2.i PETMR_images/RAC/S30/frames/f2.i PETMR_images/RAC/S64/frames/f2.i PETMR_images/RAC/S65/frames/f2.i PETMR_images/RAC/S146/frames/f2.i --val_noise_dir PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ --val_target PETMR_images/RAC/S31/frames/f2.i PETMR_images/RAC/S147/frames/f2.i --output_path Weights/f1_12_subjects_wedge --batch_size 16 --nb_epochs 200 --steps 1000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 5 --noise_norm_constant 0.045 --target_norm 0.010
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/RAC/S31/f1_as_1s/snap30.i --weight_folder Weights/RAC/f1_12_subjects_wedge --slices 89 --noise_norm_constant 0.045 --target_norm 0.010
+
+December 1st, 2022: Redo a RAC model, but with the better wedge fix, Looks great! Same as regular one
+python3.9 train.py --train_noise_dir PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/   --train_target PETMR_images/RAC/S12/frames/f2.i PETMR_images/RAC/S13/frames/f2.i PETMR_images/RAC/S14/frames/f2.i PETMR_images/RAC/S21/frames/f2.i PETMR_images/RAC/S23/frames/f2.i PETMR_images/RAC/S24/frames/f2.i PETMR_images/RAC/S27/frames/f2.i PETMR_images/RAC/S29/frames/f2.i PETMR_images/RAC/S30/frames/f2.i PETMR_images/RAC/S64/frames/f2.i PETMR_images/RAC/S65/frames/f2.i PETMR_images/RAC/S146/frames/f2.i --val_noise_dir PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ --val_target PETMR_images/RAC/S31/frames/f2.i PETMR_images/RAC/S147/frames/f2.i --output_path Weights/RAC/f1_12_subjects_crop --batch_size 16 --nb_epochs 200 --steps 1000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 5 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64 --image_size 64
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/RAC/S31/f1_as_1s/snap30.i --weight_folder Weights/RAC/f1_12_subjects_crop --slices 89 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64
+
+December 10th, 2022: Do same as above but with frame 1 as target, maybe sliiiighty worse than using f2
+python3.9 train.py --train_noise_dir PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/   --train_target PETMR_images/RAC/S12/frames/f1.i PETMR_images/RAC/S13/frames/f1.i PETMR_images/RAC/S14/frames/f1.i PETMR_images/RAC/S21/frames/f1.i PETMR_images/RAC/S23/frames/f1.i PETMR_images/RAC/S24/frames/f1.i PETMR_images/RAC/S27/frames/f1.i PETMR_images/RAC/S29/frames/f1.i PETMR_images/RAC/S30/frames/f1.i PETMR_images/RAC/S64/frames/f1.i PETMR_images/RAC/S65/frames/f1.i PETMR_images/RAC/S146/frames/f1.i --val_noise_dir PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ --val_target PETMR_images/RAC/S31/frames/f1.i PETMR_images/RAC/S147/frames/f1.i --output_path Weights/RAC/f1_12_subjects_crop_f1_target --batch_size 16 --nb_epochs 200 --steps 4000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 0 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64 --image_size 64
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/RAC/S31/f1_as_1s/snap30.i --weight_folder Weights/RAC/f1_12_subjects_f1_target --slices 89 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64
+
+December 12th: Do the same again but with the 5 remove, seems like frame 2 is sliiiiighty better still. Maybe I take that back, S11 changed
+python3.9 train.py --train_noise_dir PETMR_images/RAC/S12/f1_as_1s/ PETMR_images/RAC/S13/f1_as_1s/ PETMR_images/RAC/S14/f1_as_1s/ PETMR_images/RAC/S21/f1_as_1s/ PETMR_images/RAC/S23/f1_as_1s/ PETMR_images/RAC/S24/f1_as_1s/ PETMR_images/RAC/S27/f1_as_1s/ PETMR_images/RAC/S29/f1_as_1s/ PETMR_images/RAC/S30/f1_as_1s/ PETMR_images/RAC/S64/f1_as_1s/ PETMR_images/RAC/S65/f1_as_1s/ PETMR_images/RAC/S146/f1_as_1s/   --train_target PETMR_images/RAC/S12/frames/f1.i PETMR_images/RAC/S13/frames/f1.i PETMR_images/RAC/S14/frames/f1.i PETMR_images/RAC/S21/frames/f1.i PETMR_images/RAC/S23/frames/f1.i PETMR_images/RAC/S24/frames/f1.i PETMR_images/RAC/S27/frames/f1.i PETMR_images/RAC/S29/frames/f1.i PETMR_images/RAC/S30/frames/f1.i PETMR_images/RAC/S64/frames/f1.i PETMR_images/RAC/S65/frames/f1.i PETMR_images/RAC/S146/frames/f1.i --val_noise_dir PETMR_images/RAC/S31/f1_as_1s/ PETMR_images/RAC/S147/f1_as_1s/ --val_target PETMR_images/RAC/S31/frames/f1.i PETMR_images/RAC/S147/frames/f1.i --output_path Weights/RAC/f1_12_subjects_crop_f1_target_5rm --batch_size 16 --nb_epochs 200 --steps 4000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 5 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64 --image_size 64
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/RAC/S31/f1_as_1s/snap30.i --weight_folder Weights/RAC/f1_12_subjects_crop_f1_target_5rm --slices 89 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64
+
+December 13th: Do a new FDG model to match the RAC above
+python3.9 train.py --train_noise_dir PETMR_images/FDG/S106/f1_as_1s/ PETMR_images/FDG/S107/f1_as_1s/ PETMR_images/FDG/S108/f1_as_1s/ PETMR_images/FDG/S109/f1_as_1s/ PETMR_images/FDG/S111/f1_as_1s/ PETMR_images/FDG/S115/f1_as_1s/ PETMR_images/FDG/S116/f1_as_1s/ PETMR_images/FDG/S136/f1_as_1s/ PETMR_images/FDG/S137/f1_as_1s/ PETMR_images/FDG/S154/f1_as_1s/ PETMR_images/FDG/S156/f1_as_1s/ PETMR_images/FDG/S162/f1_as_1s/ --train_target PETMR_images/FDG/S106/frames/f1.i PETMR_images/FDG/S107/frames/f1.i PETMR_images/FDG/S108/frames/f1.i PETMR_images/FDG/S109/frames/f1.i PETMR_images/FDG/S111/frames/f1.i PETMR_images/FDG/S115/frames/f1.i PETMR_images/FDG/S116/frames/f1.i PETMR_images/FDG/S136/frames/f1.i PETMR_images/FDG/S137/frames/f1.i PETMR_images/FDG/S154/frames/f1.i PETMR_images/FDG/S156/frames/f1.i PETMR_images/FDG/S162/frames/f1.i --val_noise_dir PETMR_images/FDG/S140/f1_as_1s/ PETMR_images/FDG/S149/f1_as_1s/ PETMR_images/FDG/S157/f1_as_1s/ --val_target PETMR_images/FDG/S140/frames/f1.i PETMR_images/FDG/S149/frames/f1.i PETMR_images/FDG/S157/frames/f1.i --output_path Weights/FDG/Testing/f1_12_subjects_crop_f1_target_5rm --batch_size 16 --nb_epochs 200 --steps 4000 --save_freq 1 --slices 89 --train_nb_augmentations 10 --nb_to_remove 5 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64 --image_size 64
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/FDG/S140/f1_as_1s/snap30.i --weight_folder Weights/FDG/f1_12_subjects_crop_f1_target_5rm --slices 89 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64
+
+------------------------------ Switch to Counts ----------
+
+December 14th: Do a 2.5e6 ALL model
+python3.9 train.py --train_noise_dir 
+PETMR_images/RAC/S12/f1_as_2500000counts/ 
+PETMR_images/RAC/S13/f1_as_2500000counts/ 
+PETMR_images/RAC/S14/f1_as_2500000counts/ 
+PETMR_images/RAC/S21/f1_as_2500000counts/ 
+PETMR_images/RAC/S23/f1_as_2500000counts/ 
+PETMR_images/RAC/S24/f1_as_2500000counts/ 
+PETMR_images/RAC/S27/f1_as_2500000counts/ 
+PETMR_images/RAC/S29/f1_as_2500000counts/ 
+PETMR_images/RAC/S30/f1_as_2500000counts/ 
+PETMR_images/RAC/S64/f1_as_2500000counts/ 
+PETMR_images/RAC/S65/f1_as_2500000counts/ 
+PETMR_images/RAC/S146/f1_as_2500000counts/
+PETMR_images/FDG/S106/f1_as_2500000counts/ 
+PETMR_images/FDG/S107/f1_as_2500000counts/ 
+PETMR_images/FDG/S108/f1_as_2500000counts/ 
+PETMR_images/FDG/S109/f1_as_2500000counts/ 
+PETMR_images/FDG/S111/f1_as_2500000counts/ 
+PETMR_images/FDG/S115/f1_as_2500000counts/ 
+PETMR_images/FDG/S116/f1_as_2500000counts/ 
+PETMR_images/FDG/S136/f1_as_2500000counts/ 
+PETMR_images/FDG/S137/f1_as_2500000counts/ 
+PETMR_images/FDG/S154/f1_as_2500000counts/ 
+PETMR_images/FDG/S156/f1_as_2500000counts/ 
+PETMR_images/FDG/S162/f1_as_2500000counts/
+PETMR_images/PBR/S25/f1_as_2500000counts/ 
+PETMR_images/PBR/S26/f1_as_2500000counts/
+PETMR_images/PBR/S28/f1_as_2500000counts/
+PETMR_images/PBR/S52/f1_as_2500000counts/
+PETMR_images/PBR/S53/f1_as_2500000counts/
+PETMR_images/PBR/S57/f1_as_2500000counts/ 
+PETMR_images/PBR/S155/f1_as_2500000counts/
+PETMR_images/PBR/S159/f1_as_2500000counts/ 
+--train_target 
+PETMR_images/RAC/S12/frames/f1.i 
+PETMR_images/RAC/S13/frames/f1.i 
+PETMR_images/RAC/S14/frames/f1.i 
+PETMR_images/RAC/S21/frames/f1.i 
+PETMR_images/RAC/S23/frames/f1.i 
+PETMR_images/RAC/S24/frames/f1.i 
+PETMR_images/RAC/S27/frames/f1.i 
+PETMR_images/RAC/S29/frames/f1.i 
+PETMR_images/RAC/S30/frames/f1.i 
+PETMR_images/RAC/S64/frames/f1.i 
+PETMR_images/RAC/S65/frames/f1.i 
+PETMR_images/RAC/S146/frames/f1.i
+PETMR_images/FDG/S106/frames/f1.i 
+PETMR_images/FDG/S107/frames/f1.i 
+PETMR_images/FDG/S108/frames/f1.i 
+PETMR_images/FDG/S109/frames/f1.i 
+PETMR_images/FDG/S111/frames/f1.i 
+PETMR_images/FDG/S115/frames/f1.i 
+PETMR_images/FDG/S116/frames/f1.i 
+PETMR_images/FDG/S136/frames/f1.i 
+PETMR_images/FDG/S137/frames/f1.i 
+PETMR_images/FDG/S154/frames/f1.i 
+PETMR_images/FDG/S156/frames/f1.i 
+PETMR_images/FDG/S162/frames/f1.i
+PETMR_images/PBR/S25/frames/f1.i
+PETMR_images/PBR/S26/frames/f1.i
+PETMR_images/PBR/S28/frames/f1.i
+PETMR_images/PBR/S52/frames/f1.i
+PETMR_images/PBR/S53/frames/f1.i
+PETMR_images/PBR/S57/frames/f1.i
+PETMR_images/PBR/S155/frames/f1.i
+PETMR_images/PBR/S159/frames/f1.i
+--val_noise_dir 
+PETMR_images/RAC/S31/f1_as_2500000counts/ 
+PETMR_images/RAC/S50/f1_as_2500000counts/ 
+PETMR_images/RAC/S54/f1_as_2500000counts/ 
+PETMR_images/RAC/S58/f1_as_2500000counts/ 
+PETMR_images/RAC/S62/f1_as_2500000counts/ 
+PETMR_images/RAC/S68/f1_as_2500000counts/ 
+PETMR_images/RAC/S79/f1_as_2500000counts/ 
+PETMR_images/RAC/S84/f1_as_2500000counts/ 
+PETMR_images/RAC/S85/f1_as_2500000counts/       
+PETMR_images/RAC/S147/f1_as_2500000counts/ 
+PETMR_images/FDG/S140/f1_as_2500000counts/ 
+PETMR_images/FDG/S149/f1_as_2500000counts/ 
+PETMR_images/FDG/S157/f1_as_2500000counts/
+PETMR_images/PBR/S22/f1_as_2500000counts/  
+--val_target 
+PETMR_images/RAC/S31/frames/f1.i
+PETMR_images/RAC/S50/frames/f1.i
+PETMR_images/RAC/S54/frames/f1.i
+PETMR_images/RAC/S58/frames/f1.i
+PETMR_images/RAC/S62/frames/f1.i
+PETMR_images/RAC/S68/frames/f1.i
+PETMR_images/RAC/S79/frames/f1.i
+PETMR_images/RAC/S84/frames/f1.i
+PETMR_images/RAC/S85/frames/f1.i
+PETMR_images/RAC/S147/frames/f1.i
+PETMR_images/FDG/S140/frames/f1.i
+PETMR_images/FDG/S149/frames/f1.i
+PETMR_images/FDG/S157/frames/f1.i
+PETMR_images/PBR/S22/frames/f1.i
+--output_path Weights/ALL/f1_32_subjects_crop_f1_target_2500000counts --batch_size 16 --nb_epochs 200 --steps 4000 --save_freq 1 --slices 89 --train_nb_augmentations 0 --nb_to_remove 0 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64 --image_size 64
+
+python3.9 train.py --train_noise_dir PETMR_images/RAC/S12/f1_as_2500000counts/ PETMR_images/RAC/S13/f1_as_2500000counts/ PETMR_images/RAC/S14/f1_as_2500000counts/ PETMR_images/RAC/S21/f1_as_2500000counts/  PETMR_images/RAC/S23/f1_as_2500000counts/ PETMR_images/RAC/S24/f1_as_2500000counts/ PETMR_images/RAC/S27/f1_as_2500000counts/ PETMR_images/RAC/S29/f1_as_2500000counts/ PETMR_images/RAC/S30/f1_as_2500000counts/ PETMR_images/RAC/S64/f1_as_2500000counts/ PETMR_images/RAC/S65/f1_as_2500000counts/ PETMR_images/RAC/S146/f1_as_2500000counts/ PETMR_images/FDG/S106/f1_as_2500000counts/ PETMR_images/FDG/S107/f1_as_2500000counts/ PETMR_images/FDG/S108/f1_as_2500000counts/ PETMR_images/FDG/S109/f1_as_2500000counts/ PETMR_images/FDG/S111/f1_as_2500000counts/ PETMR_images/FDG/S115/f1_as_2500000counts/ PETMR_images/FDG/S116/f1_as_2500000counts/ PETMR_images/FDG/S136/f1_as_2500000counts/ PETMR_images/FDG/S137/f1_as_2500000counts/ PETMR_images/FDG/S154/f1_as_2500000counts/ PETMR_images/FDG/S156/f1_as_2500000counts/ PETMR_images/FDG/S162/f1_as_2500000counts/ PETMR_images/PBR/S25/f1_as_2500000counts/ PETMR_images/PBR/S26/f1_as_2500000counts/ PETMR_images/PBR/S28/f1_as_2500000counts/ PETMR_images/PBR/S52/f1_as_2500000counts/ PETMR_images/PBR/S53/f1_as_2500000counts/ PETMR_images/PBR/S57/f1_as_2500000counts/ PETMR_images/PBR/S155/f1_as_2500000counts/ PETMR_images/PBR/S159/f1_as_2500000counts/ --train_target PETMR_images/RAC/S12/frames/f1.i PETMR_images/RAC/S13/frames/f1.i PETMR_images/RAC/S14/frames/f1.i PETMR_images/RAC/S21/frames/f1.i PETMR_images/RAC/S23/frames/f1.i PETMR_images/RAC/S24/frames/f1.i PETMR_images/RAC/S27/frames/f1.i PETMR_images/RAC/S29/frames/f1.i PETMR_images/RAC/S30/frames/f1.i PETMR_images/RAC/S64/frames/f1.i PETMR_images/RAC/S65/frames/f1.i PETMR_images/RAC/S146/frames/f1.i PETMR_images/FDG/S106/frames/f1.i PETMR_images/FDG/S107/frames/f1.i PETMR_images/FDG/S108/frames/f1.i PETMR_images/FDG/S109/frames/f1.i PETMR_images/FDG/S111/frames/f1.i PETMR_images/FDG/S115/frames/f1.i PETMR_images/FDG/S116/frames/f1.i PETMR_images/FDG/S136/frames/f1.i PETMR_images/FDG/S137/frames/f1.i PETMR_images/FDG/S154/frames/f1.i PETMR_images/FDG/S156/frames/f1.i PETMR_images/FDG/S162/frames/f1.i PETMR_images/PBR/S25/frames/f1.i PETMR_images/PBR/S26/frames/f1.i PETMR_images/PBR/S28/frames/f1.i PETMR_images/PBR/S52/frames/f1.i PETMR_images/PBR/S53/frames/f1.i PETMR_images/PBR/S57/frames/f1.i PETMR_images/PBR/S155/frames/f1.i PETMR_images/PBR/S159/frames/f1.i --val_noise_dir PETMR_images/RAC/S31/f1_as_2500000counts/ PETMR_images/RAC/S50/f1_as_2500000counts/ PETMR_images/RAC/S54/f1_as_2500000counts/ PETMR_images/RAC/S58/f1_as_2500000counts/ PETMR_images/RAC/S62/f1_as_2500000counts/ PETMR_images/RAC/S68/f1_as_2500000counts/ PETMR_images/RAC/S79/f1_as_2500000counts/ PETMR_images/RAC/S84/f1_as_2500000counts/ PETMR_images/RAC/S85/f1_as_2500000counts/ PETMR_images/RAC/S147/f1_as_2500000counts/ PETMR_images/FDG/S140/f1_as_2500000counts/ PETMR_images/FDG/S149/f1_as_2500000counts/ PETMR_images/FDG/S157/f1_as_2500000counts/ PETMR_images/PBR/S22/f1_as_2500000counts/ --val_target PETMR_images/RAC/S31/frames/f1.i PETMR_images/RAC/S50/frames/f1.i PETMR_images/RAC/S54/frames/f1.i PETMR_images/RAC/S58/frames/f1.i PETMR_images/RAC/S62/frames/f1.i PETMR_images/RAC/S68/frames/f1.i PETMR_images/RAC/S79/frames/f1.i PETMR_images/RAC/S84/frames/f1.i PETMR_images/RAC/S85/frames/f1.i PETMR_images/RAC/S147/frames/f1.i PETMR_images/FDG/S140/frames/f1.i PETMR_images/FDG/S149/frames/f1.i PETMR_images/FDG/S157/frames/f1.i PETMR_images/PBR/S22/frames/f1.i --output_path Weights/ALL/f1_32_subjects_crop_f1_target_2500000counts --batch_size 16 --nb_epochs 200 --steps 4000 --save_freq 1 --slices 89 --train_nb_augmentations 100 --nb_to_remove 0 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64 --image_size 64
+
+python3.9 test_model.py --output_dir Outputs/Quick_single  --test_noise_dir PETMR_images/RAC/S31/f1_as_2500000counts/snap1.i --weight_folder Weights/ALL/f1_32_subjects_crop_f1_target_2500000counts --slices 89 --noise_norm_constant 0.045 --target_norm 0.010 --padding random --crop_xy 64
+
+
